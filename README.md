@@ -53,8 +53,7 @@ You can also open `/resume/` in Chrome and use **Print → Save as PDF** (turn o
 
 These render as visible "coming soon" placeholders until set:
 
-- `site.trailblazer.href`: your Trailblazer profile URL.
-- The other five certification names in `src/content/resume.ts`.
+- The other six certification names in `src/content/resume.ts`.
 - Screenshots: add images to `public/screenshots/` and set `src` on the matching entry in the project file.
 - Demo video: set `demo.href` in the project file.
 

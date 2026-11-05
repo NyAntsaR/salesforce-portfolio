@@ -25,6 +25,10 @@ export default function ResumePage() {
     site.email.href && { label: site.email.href.replace(/^mailto:/, ""), href: site.email.href },
     site.linkedin.href && { label: site.linkedin.href.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, ""), href: site.linkedin.href },
     site.github.href && { label: site.github.href.replace(/^https:\/\//, ""), href: site.github.href },
+    site.trailblazer.href && {
+      label: site.trailblazer.href.replace(/^https:\/\/(www\.)?/, ""),
+      href: site.trailblazer.href,
+    },
     { label: site.url.replace(/^https:\/\//, "").replace(/\/$/, ""), href: site.url },
   ].filter(Boolean) as { label: string; href: string }[];
 

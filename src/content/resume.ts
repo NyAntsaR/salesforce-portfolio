@@ -32,7 +32,7 @@ export const resume = {
     "environments, currently at Google. Specializes in Apex (triggers, Batch and Queueable), Lightning Web Components, and " +
     "REST/SOAP integrations, writing bulkified, governor-limit-safe code and maintainable security models. Has led delivery of " +
     "four Salesforce implementations and works directly with stakeholders from requirements through release. " +
-    "9x Salesforce Certified, including Platform Developer II.",
+    "10x Salesforce Certified, including Platform Developer II.",
 
   skills: [
     {
@@ -145,8 +145,8 @@ export const resume = {
   ] satisfies ResumeProject[],
 
   certifications: {
-    // TODO: list the other five certification names so the full set of nine is shown.
-    summary: "9x Salesforce Certified",
+    // TODO: list the other six certification names so the full set of ten is shown.
+    summary: "10x Salesforce Certified",
     names: ["Platform Developer II", "Platform Developer I", "Administrator", "Platform App Builder"],
   },
 

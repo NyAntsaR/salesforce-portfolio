@@ -11,7 +11,7 @@ export const site = {
   intro:
     "I build Salesforce solutions with Apex, Lightning Web Components, and Service Cloud, " +
     "and I design integrations between Salesforce and external systems over REST APIs.",
-  credentials: "Salesforce Developer at Google · 9x Salesforce Certified, including Platform Developer II",
+  credentials: "Salesforce Developer at Google · 10x Salesforce Certified, including Platform Developer II",
   focus:
     "This portfolio documents integration projects I am building in the open, " +
     "with the status of each part stated plainly.",
@@ -23,8 +23,7 @@ export const site = {
 
   github: { label: "GitHub", href: "https://github.com/NyAntsaR" } as MaybeLink,
   linkedin: { label: "LinkedIn", href: "https://www.linkedin.com/in/nyantsarajaonarison/" } as MaybeLink,
-  // TODO: your Trailblazer profile URL (the link in the resume PDF points to the generic profile page).
-  trailblazer: { label: "Trailblazer profile" } as MaybeLink,
+  trailblazer: { label: "Trailblazer profile", href: "https://www.salesforce.com/trailblazer/nrajaonarison" } as MaybeLink,
   email: { label: "Email", href: "mailto:nyantsa.rajaonarison@gmail.com" } as MaybeLink,
   // Generated from the /resume/ page; see "Updating the resume" in the README.
   resume: { label: "Download resume (PDF)", href: "/resume/ny-antsa-rajaonarison-resume.pdf" } as MaybeLink,
