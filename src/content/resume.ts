@@ -137,8 +137,9 @@ export const resume = {
       href: "https://nyantsar.github.io/salesforce-portfolio/projects/salesforce-github-integration/",
       highlights: [
         "Service Cloud Case escalation that creates GitHub Issues through Queueable Apex callouts, authenticated with a Named Credential and OAuth.",
+        "Durable operation tracking with a unique idempotency key, a processing lease, and failure classification that separates retryable errors from outcomes needing reconciliation.",
         "Duplicate prevention with row locking and user-mode security, an integration log object, and repository settings in Custom Metadata.",
-        "26 Apex test methods with mocked callouts covering success, validation, and error paths.",
+        "39 Apex test methods with mocked callouts covering success, retries, timeouts, validation, and error paths.",
       ],
     },
   ] satisfies ResumeProject[],
