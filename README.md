@@ -35,13 +35,26 @@ All content is data; the pages render it.
 | Projects | `src/content/projects/*.ts` |
 | Project order | `src/content/projects/index.ts` |
 
+## Updating the resume
+
+The resume lives in `src/content/resume.ts`. The `/resume/` page renders it, and the PDF is printed from that page, so the web and PDF versions always match. After editing:
+
+```bash
+npm run build
+(cd out && python3 -m http.server 4173 &)
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer \
+  --print-to-pdf="$PWD/public/resume/ny-antsa-rajaonarison-resume.pdf" http://localhost:4173/resume/
+npm run build      # rebuild so out/ includes the new PDF
+```
+
+You can also open `/resume/` in Chrome and use **Print → Save as PDF** (turn off "Headers and footers"). Aim for two pages.
+
 ### Placeholders to fill in before publishing
 
 These render as visible "coming soon" placeholders until set:
 
-- `site.linkedin.href`: your LinkedIn URL.
-- `site.email.href`: a `mailto:` address you're happy to publish.
-- `site.resume.href`: add `public/resume/resume.pdf`, then set this to `"/resume/resume.pdf"`.
+- `site.trailblazer.href`: your Trailblazer profile URL.
+- The other five certification names in `src/content/resume.ts`.
 - Screenshots: add images to `public/screenshots/` and set `src` on the matching entry in the project file.
 - Demo video: set `demo.href` in the project file.
 
