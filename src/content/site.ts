@@ -2,7 +2,6 @@ import type { MaybeLink } from "./types";
 
 /**
  * Personal details for the portfolio.
- * Values marked TODO are placeholders: fill them in before publishing.
  * A link without an href renders as a visible "pending" placeholder.
  */
 export const site = {
@@ -12,6 +11,7 @@ export const site = {
   intro:
     "I build Salesforce solutions with Apex, Lightning Web Components, and Service Cloud, " +
     "and I design integrations between Salesforce and external systems over REST APIs.",
+  credentials: "Salesforce Developer at Google · 9x Salesforce Certified, including Platform Developer II",
   focus:
     "This portfolio documents integration projects I am building in the open, " +
     "with the status of each part stated plainly.",
@@ -22,12 +22,12 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://nyantsar.github.io/salesforce-portfolio",
 
   github: { label: "GitHub", href: "https://github.com/NyAntsaR" } as MaybeLink,
-  // TODO: your LinkedIn profile URL.
-  linkedin: { label: "LinkedIn" } as MaybeLink,
-  // TODO: a contact email you are happy to publish (a mailto: link).
-  email: { label: "Email" } as MaybeLink,
-  // TODO: add your resume as public/resume/resume.pdf, then set href to "/resume/resume.pdf".
-  resume: { label: "Download resume (PDF)" } as MaybeLink,
+  linkedin: { label: "LinkedIn", href: "https://www.linkedin.com/in/nyantsarajaonarison/" } as MaybeLink,
+  // TODO: your Trailblazer profile URL (the link in the resume PDF points to the generic profile page).
+  trailblazer: { label: "Trailblazer profile" } as MaybeLink,
+  email: { label: "Email", href: "mailto:nyantsa.rajaonarison@gmail.com" } as MaybeLink,
+  // Generated from the /resume/ page; see "Updating the resume" in the README.
+  resume: { label: "Download resume (PDF)", href: "/resume/ny-antsa-rajaonarison-resume.pdf" } as MaybeLink,
 };
 
 export interface SkillGroup {
@@ -35,43 +35,45 @@ export interface SkillGroup {
   skills: string[];
 }
 
-/**
- * Skills from your stated experience, plus tools used in the projects on this site.
- * Add to this list; do not list anything you have not worked with.
- */
+/** Skills from Ny's resume, plus tools used in the projects on this site. */
 export const skillGroups: SkillGroup[] = [
   {
     title: "Salesforce development",
     skills: [
       "Apex",
+      "Triggers",
+      "Batch & Queueable Apex",
       "Lightning Web Components",
-      "Queueable Apex",
-      "SOQL (user mode)",
+      "Visualforce",
+      "Dynamic SOQL/SOSL",
+      "Flow Builder",
       "Apex unit testing",
     ],
   },
   {
-    title: "Service Cloud & platform",
+    title: "Integration",
     skills: [
-      "Service Cloud",
-      "Lightning App Builder",
-      "Dynamic Forms",
-      "Custom objects & metadata types",
-      "Permission sets",
-    ],
-  },
-  {
-    title: "Integration & architecture",
-    skills: [
-      "REST API integrations",
+      "REST & SOAP web services",
+      "Webhooks",
+      "JSON/XML parsing",
+      "Middleware integration",
       "Named & External Credentials",
       "OAuth 2.0",
-      "Integration logging",
-      "Salesforce architecture",
     ],
   },
   {
-    title: "Tooling",
-    skills: ["Salesforce CLI (sf)", "Salesforce DX", "Git & GitHub"],
+    title: "Architecture & security",
+    skills: [
+      "Object modeling",
+      "Sharing rules",
+      "Permission Set Groups",
+      "Role hierarchy",
+      "Service Cloud",
+      "Dynamic Forms",
+    ],
+  },
+  {
+    title: "Delivery & tooling",
+    skills: ["Git", "Salesforce CLI", "VS Code", "CI/CD pipelines", "Change sets", "Code reviews", "Agile/Scrum"],
   },
 ];
