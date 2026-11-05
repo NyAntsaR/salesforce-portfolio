@@ -6,8 +6,7 @@ import type { MaybeLink } from "./types";
  * A link without an href renders as a visible "pending" placeholder.
  */
 export const site = {
-  // TODO: your name as you want it on the site.
-  name: "Your Name",
+  name: "Ny Antsa",
   role: "Salesforce Developer",
   yearsOfExperience: 6,
   intro:

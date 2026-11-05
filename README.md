@@ -39,7 +39,6 @@ All content is data; the pages render it.
 
 These render as visible "coming soon" placeholders until set:
 
-- `site.name`: your name.
 - `site.linkedin.href`: your LinkedIn URL.
 - `site.email.href`: a `mailto:` address you're happy to publish.
 - `site.resume.href`: add `public/resume/resume.pdf`, then set this to `"/resume/resume.pdf"`.
