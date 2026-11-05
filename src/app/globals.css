@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
+/* Design tokens. Every color in the UI and the diagrams comes from these. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --background: #f7f8fa;
+  --surface: #ffffff;
+  --surface-muted: #f0f2f5;
+  --border: #dde1e7;
+  --foreground: #14181f;
+  --muted: #555f6d;
+  --accent: #0b5cab;
+  --accent-strong: #08488a;
+  --accent-soft: #e6f0fb;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --done: #1b7a43;
+  --done-soft: #e5f4ea;
+  --partial: #8a5a00;
+  --partial-soft: #fbf1dc;
+  --planned: #4b5563;
+  --planned-soft: #eceef1;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0d1117;
+    --surface: #151b23;
+    --surface-muted: #1c232d;
+    --border: #2d3540;
+    --foreground: #e8ebef;
+    --muted: #9aa4b1;
+    --accent: #6cb2f5;
+    --accent-strong: #9ccbf8;
+    --accent-soft: #14304d;
+
+    --done: #5fcf8c;
+    --done-soft: #12301f;
+    --partial: #f0bf5a;
+    --partial-soft: #352914;
+    --planned: #aab3bf;
+    --planned-soft: #232a33;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-done: var(--done);
+  --color-done-soft: var(--done-soft);
+  --color-partial: var(--partial);
+  --color-partial-soft: var(--partial-soft);
+  --color-planned: var(--planned);
+  --color-planned-soft: var(--planned-soft);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Keep anchored headings clear of the sticky header. */
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }

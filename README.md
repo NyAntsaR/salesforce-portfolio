@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Salesforce engineering portfolio
 
-## Getting Started
+A static portfolio site built with Next.js (App Router), TypeScript, and Tailwind CSS, exported to plain HTML for GitHub Pages.
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # http://localhost:3000, with live reload
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To preview the exact files GitHub Pages will serve:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build                      # writes the static site to out/
+npx serve out                      # or: cd out && python3 -m http.server 4173
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Checks
 
-## Learn More
+```bash
+npm run lint         # ESLint (Next.js core-web-vitals + TypeScript rules)
+npx tsc --noEmit     # type check (run `npx next typegen` first after adding routes)
+npm run build        # production build and static export
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Editing content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+All content is data; the pages render it.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| What | Where |
+| --- | --- |
+| Name, intro, links, resume | `src/content/site.ts` |
+| Skills | `skillGroups` in `src/content/site.ts` |
+| Projects | `src/content/projects/*.ts` |
+| Project order | `src/content/projects/index.ts` |
 
-## Deploy on Vercel
+### Placeholders to fill in before publishing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+These render as visible "coming soon" placeholders until set:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `site.name`: your name.
+- `site.linkedin.href`: your LinkedIn URL.
+- `site.email.href`: a `mailto:` address you're happy to publish.
+- `site.resume.href`: add `public/resume/resume.pdf`, then set this to `"/resume/resume.pdf"`.
+- Screenshots: add images to `public/screenshots/` and set `src` on the matching entry in the project file.
+- Demo video: set `demo.href` in the project file.
+
+### Adding a project (case-study template)
+
+1. Copy `src/content/projects/_template.ts` to a new file and rename the export.
+2. Fill in only what exists. Mark unfinished work `"planned"` or `"partial"`, and leave `href` empty for links you don't have yet.
+3. Add it to the list in `src/content/projects/index.ts`.
+
+The page at `/projects/<slug>/` is generated at build time, and the diagram is drawn from `architecture.nodes` and `architecture.edges`. Nodes that aren't `"done"` are drawn dashed.
+
+Keep each project's `lastVerified` date current when you re-check it against the source code.
+
+## Deploying to GitHub Pages
+
+`.github/workflows/deploy.yml` builds and publishes the site on every push to `main`.
+
+1. Create a GitHub repository and push this project to its `main` branch.
+2. In the repository, open **Settings → Pages** and set **Source** to **GitHub Actions**.
+3. Push to `main`, or run the workflow from the **Actions** tab.
+
+The workflow passes the Pages base path and URL to the build, so the same code works for a project repository (`https://<user>.github.io/<repo>/`) and for a `<user>.github.io` repository.
+
+To build for a project repository locally:
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/salesforce-portfolio npm run build
+```
+
+## Design notes
+
+- **Static export** (`output: "export"`, `trailingSlash: true`): every route is pre-rendered to `index.html`, which GitHub Pages serves without a server or rewrites. `public/.nojekyll` stops Pages from ignoring the `_next/` folder.
+- **No Cache Components:** the generated `cacheComponents` setting is turned off. A static export doesn't need it, and turning it off allows `dynamicParams = false`, so unknown project slugs fail at build time instead of needing a server.
+- **Diagrams are inline SVG** generated from project data: no client JavaScript, readable by screen readers through `<title>`/`<desc>` and a text version, and themed by the same CSS variables as the page.
+- **Honest status everywhere:** every capability, component, and diagram node has a status, and badges always include a text label, not just a color.
+- **Static files and the base path:** `next/link` adds the base path automatically, but `<a href>` and `<img src>` to files in `public/` don't, so use `withBasePath()` from `src/lib/paths.ts` for those.
